@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <string.h>
+#include <ncurses.h>
 
 const char * FDEFAULT = "HackerTyper.c";
 const int NDEFAULT = 3;
