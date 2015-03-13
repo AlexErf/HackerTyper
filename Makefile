@@ -5,10 +5,10 @@ FL=-lncurses
 all: HackerTyper
 
 HackerTyper: HackerTyper.o
-	$(CC) HackerTyper.o -o HackerTyper
+	$(CC) HackerTyper.o -o HackerTyper $(FL)
 
 HackerTyper.o: HackerTyper.c
-	$(CC) $(FL) -c HackerTyper.c
+	$(CC) -c HackerTyper.c
 
 clean:
 	rm *.o HackerTyper

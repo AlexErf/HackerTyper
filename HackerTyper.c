@@ -8,13 +8,13 @@
 const char * FDEFAULT = "HackerTyper.c";
 const int NDEFAULT = 3;
 
-void loadFile(FILE *, char *);
-void hackType(FILE *, int);
+void loadFile(FILE *, const char *);
+void hackType(FILE *, const int);
 
 int main(int argc, const char * argv[]) {
 
 	FILE * fp;
-	char * fname, * opt;
+	const char * fname, * opt;
 	int nc;
 
 	fname = FDEFAULT;
@@ -41,14 +41,18 @@ int main(int argc, const char * argv[]) {
 	hackType(fp, nc);
 }
 
-void loadFile(FILE * fp, char * fname) {
+void loadFile(FILE * fp, const char * fname) {
 	fp = fopen(fname, "r");
 	assert(fp);
 }
 
-void hackType(FILE * fp, int nc) {
-
-	printf("%d\n", nc);
+void hackType(FILE * fp, const int nc) {
+	
+	initscr();
+	printw("TEST");
+	refresh();
+	getch();
+	endwin();
 
 }
 
