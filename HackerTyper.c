@@ -55,7 +55,8 @@ void hackType(FILE * fp, const int nc) {
 	scrollok(stdscr, TRUE);
 	attron(A_BOLD);
 	if (has_colors() == TRUE) {
-		init_pair(1, COLOR_GREEN, COLOR_BLACK);
+		start_color();
+		init_pair(1, COLOR_RED, COLOR_BLACK);
 		attron(COLOR_PAIR(1));
 	}
 	while (1) {
