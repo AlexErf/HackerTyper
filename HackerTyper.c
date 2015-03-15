@@ -53,6 +53,11 @@ void hackType(FILE * fp, const int nc) {
 	noecho();
 	cbreak();
 	scrollok(stdscr, TRUE);
+	attron(A_BOLD);
+	if (has_colors() == TRUE) {
+		init_pair(1, COLOR_GREEN, COLOR_BLACK);
+		attron(COLOR_PAIR(1));
+	}
 	while (1) {
 		getch();
 		for (i = 0; i < nc; ++i) {
