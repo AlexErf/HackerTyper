@@ -8,7 +8,7 @@
 const char * FDEFAULT = "HackerTyper.c";
 const int NDEFAULT = 3;
 
-void loadFile(FILE *, const char *);
+void loadFile(FILE **, const char *);
 void hackType(FILE *, const int);
 
 int main(int argc, const char * argv[]) {
@@ -37,22 +37,34 @@ int main(int argc, const char * argv[]) {
 			}
 		}
 	}
-	loadFile(fp, fname);
+	loadFile(&fp, fname);
 	hackType(fp, nc);
 }
 
-void loadFile(FILE * fp, const char * fname) {
-	fp = fopen(fname, "r");
-	assert(fp);
+void loadFile(FILE ** fp, const char * fname) {
+	*fp = fopen(fname, "r");
+	assert(*fp);
 }
 
 void hackType(FILE * fp, const int nc) {
 	
+	int i, c;
 	initscr();
-	printw("TEST");
-	refresh();
-	getch();
+	noecho();
+	cbreak();
+	scrollok(stdscr, TRUE);
+	while (1) {
+		getch();
+		for (i = 0; i < nc; ++i) {
+			if ((c = getc(fp)) == EOF) {
+				fseek(fp, 0, SEEK_SET);
+				c = getc(fp);
+			}
+			addch(c);
+			refresh();
+		}
+		refresh();
+	}
 	endwin();
 
-}
-
+} 
