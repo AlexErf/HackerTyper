@@ -48,10 +48,21 @@ void loadFile(FILE * fp, const char * fname) {
 
 void hackType(FILE * fp, const int nc) {
 	
+	int i, c;
 	initscr();
-	printw("TEST");
-	refresh();
-	getch();
+	noecho();
+	while (1) {
+		getch();
+		for (i = 0; i < nc; ++i) {
+			c = getc(fp);
+			if ((c = getc(fp)) == EOF) {
+				fseek(fp, 0, SEEK_SET);
+				c = getc(fp);
+			}
+			addch(c);
+		}
+		refresh();
+	}
 	endwin();
 
 }
